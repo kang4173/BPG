@@ -20,6 +20,8 @@ ABaseChar::ABaseChar()
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	FollowCamera->bUsePawnControlRotation = false;
+
+	BaseSkill = CreateDefaultSubobject<USkillComp>(TEXT("BaseSkill"));
 }
 
 // Called when the game starts or when spawned

@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 
 #include "MainStruct.h"
+#include "Skill/SkillComp.h"
 
 #include "BaseChar.generated.h"
 
@@ -65,5 +66,10 @@ public:
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FMainStruct MainST;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USkillComp* BaseSkill;
+
+
 
 };

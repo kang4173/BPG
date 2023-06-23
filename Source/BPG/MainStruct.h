@@ -29,6 +29,6 @@ public:
 	class UStaticMeshComponent* Mesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<USkillComp>SkillComp;
+	TSubclassOf<USkillComp>BaseSkillComp;
 	
 };
