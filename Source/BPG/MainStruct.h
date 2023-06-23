@@ -5,13 +5,9 @@
 #include "CoreMinimal.h"
 #include "Engine/DataTable.h"
 
-#include "SkillComp.h"
+#include "Skill/SkillComp.h"
 
 #include "MainStruct.generated.h"
-
-/**
- * 
- */
 
 USTRUCT(Atomic, BlueprintType)
 struct FMainStruct : public FTableRowBase

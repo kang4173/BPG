@@ -10,27 +10,27 @@
 #include "BaseChar.generated.h"
 
 
-/*생성자(업데이트), UI(생성할때 한번, 발동때 업데이트)*/
-
 UCLASS()
 class BPG_API ABaseChar : public ACharacter
 {
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+public:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	class USpringArmComponent* CameraBoom;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	class UCameraComponent* FollowCamera;
 
 public:
 	// Sets default values for this character's properties
 	ABaseChar();
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	float BaseTurnRate;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	float BaseLookUpRate;
 
 protected:
@@ -64,6 +64,6 @@ public:
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	class FMainStruct MainST;
+	FMainStruct MainST;
 
 };
