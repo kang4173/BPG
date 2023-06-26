@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Skill/SkillComp.h"
+#include "SkillComp.h"
 #include "Skill_HoleMan.generated.h"
 
 /**

@@ -37,6 +37,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FSkillStruct SKillST;
 
+public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UStaticMesh* Mesh;
+
 
 		
 };
