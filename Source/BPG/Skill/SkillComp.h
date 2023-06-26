@@ -29,10 +29,10 @@ public:
 
 public:
 	UFUNCTION(BlueprintCallable)
-		virtual void Tbagging() {};
+	virtual void Tbagging() {};
 
 	UFUNCTION(BlueprintCallable)
-		virtual void ActiveSkill() {};
+	virtual void ActiveSkill() {};
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FSkillStruct SKillST;
