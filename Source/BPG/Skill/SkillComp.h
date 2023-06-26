@@ -28,10 +28,15 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 public:
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void Tbagging();
+	UFUNCTION(BlueprintCallable)
+		virtual void Tbagging() {};
+
+	UFUNCTION(BlueprintCallable)
+		virtual void ActiveSkill() {};
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FSkillStruct SKillST;
+
+
 		
 };

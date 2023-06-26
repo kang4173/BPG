@@ -21,3 +21,13 @@ void USkill_1::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 }
+
+void USkill_1::Tbagging()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("TTTT"));
+}
+
+void USkill_1::ActiveSkill()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("AAAA"));
+}

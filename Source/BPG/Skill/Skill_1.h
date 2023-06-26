@@ -26,5 +26,10 @@ public:
 
 public:
 
+	
+	virtual void Tbagging() override;
+
+	
+	virtual void ActiveSkill() override;
 
 };
