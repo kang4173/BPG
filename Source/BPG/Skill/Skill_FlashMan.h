@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "SkillComp.h"
+
 #include "Skill_FlashMan.generated.h"
 
 /**
@@ -14,4 +15,19 @@ class BPG_API USkill_FlashMan : public USkillComp
 {
 	GENERATED_BODY()
 	
+public:
+	USkill_FlashMan();
+protected:
+	virtual void BeginPlay() override;
+
+public:
+
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+public:
+
+	virtual void Tbagging() override;
+
+	virtual void ActiveSkill() override;
 };
+
