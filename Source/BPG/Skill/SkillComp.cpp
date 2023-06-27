@@ -18,8 +18,6 @@ USkillComp::USkillComp()
 void USkillComp::BeginPlay()
 {
 	Super::BeginPlay();
-
-	GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Black, TEXT("SKillComp Begin Play"));
 	
 }
 

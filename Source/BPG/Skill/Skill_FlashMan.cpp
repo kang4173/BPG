@@ -24,11 +24,11 @@ void USkill_FlashMan::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 
 void USkill_FlashMan::Tbagging()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("TTTT"));
+	//GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("TTTT"));
 }
 
 void USkill_FlashMan::ActiveSkill()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("AAAA"));
+	//GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("AAAA"));
 }
 

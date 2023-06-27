@@ -4,6 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "SkillComp.h"
+
+#include "BPG/BaseChar.h"
+
 #include "Skill_SelfExplosion.generated.h"
 
 /**
@@ -28,4 +31,12 @@ public:
 	virtual void Tbagging() override;
 
 	virtual void ActiveSkill() override;
+
+public:
+
+	TArray<AActor*> AllChar;
+
+	class ABaseChar* Char;
+
+	int A = 0;
 };

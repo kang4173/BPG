@@ -68,8 +68,16 @@ public:
 	FMainStruct MainST;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	USkillComp* BaseSkill;
+	class USkillComp* BaseSkill;
 
+	UPROPERTY(BlueprintReadWrite)
+	FName RandomNum;
+	
+	TArray<FName> RowName;
 
+	UDataTable* khj;
+	UDataTable* kkk;
 
+	UFUNCTION()
+	void ChangeChar();
 };

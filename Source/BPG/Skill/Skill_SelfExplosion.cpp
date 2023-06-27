@@ -3,6 +3,8 @@
 
 #include "Skill_SelfExplosion.h"
 
+#include "Kismet/GameplayStatics.h"
+
 USkill_SelfExplosion::USkill_SelfExplosion()
 {
     PrimaryComponentTick.bCanEverTick = true;
@@ -26,4 +28,11 @@ void USkill_SelfExplosion::Tbagging()
 
 void USkill_SelfExplosion::ActiveSkill()
 {
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABaseChar::StaticClass(), AllChar);
+
+    for (int i = 0; i < AllChar.Num(); i++)
+    {
+          
+    }
+   
 }

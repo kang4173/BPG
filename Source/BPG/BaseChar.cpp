@@ -6,6 +6,8 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 
+#include "Skill/SkillComp.h"
+
 // Sets default values
 ABaseChar::ABaseChar()
 {
@@ -22,13 +24,34 @@ ABaseChar::ABaseChar()
 	FollowCamera->bUsePawnControlRotation = false;
 
 	BaseSkill = CreateDefaultSubobject<USkillComp>(TEXT("BaseSkill"));
+
+	khj = LoadObject<UDataTable>(nullptr, TEXT("DataTable'/Game/BPG/KHJ/Base/khj.khj'"));
+	kkk = LoadObject<UDataTable>(nullptr, TEXT("DataTable'/Game/BPG/KHJ/Base/kkk.kkk'"));
 }
 
 // Called when the game starts or when spawned
 void ABaseChar::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	RowName = khj->GetRowNames();
+	RandomNum = RowName[FMath::RandRange(2, 2)];
+
+	MainST = *(khj->FindRow<FMainStruct>(RandomNum, FString("")));
+
+	if(&MainST)
+	{ 
+		//BaseSkill = Cast<USkillComp>(AddComponentByClass(USkillComp::StaticClass(), true, GetTransform(), false));
+		BaseSkill = Cast<USkillComp>(AddComponentByClass(MainST.BaseSkillComp, true, GetTransform(), false));
+	}
+	else{ GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("MainST Null")); }
+
+	if (BaseSkill)
+	{
+		BaseSkill->SKillST = *(kkk->FindRow<FSkillStruct>(RandomNum, FString("")));
+	}
+	else{ GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("BaseSkill Null")); }
+
 }
 
 // Called every frame
@@ -109,3 +132,23 @@ void ABaseChar::MoveRight(float Value)
 	}
 }
 
+void ABaseChar::ChangeChar()
+{
+	BaseSkill->DestroyComponent();
+
+	RandomNum = RowName[FMath::RandRange(2, 2)];
+
+	MainST = *(khj->FindRow<FMainStruct>(RandomNum, FString("")));
+
+	if (&MainST)
+	{
+		BaseSkill = Cast<USkillComp>(AddComponentByClass(USkillComp::StaticClass(), true, GetTransform(), false));
+	}
+	else { GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("MainST Null")); }
+
+	if (BaseSkill)
+	{
+		BaseSkill->SKillST = *(kkk->FindRow<FSkillStruct>(RandomNum, FString("")));
+	}
+	else { GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("BaseSkill Null")); }
+}

@@ -11,7 +11,7 @@ USkill_ReturnMan::USkill_ReturnMan()
 
 void USkill_ReturnMan::BeginPlay()
 {
-    Super::BeginPlay()
+    Super::BeginPlay();
 
 }
 
