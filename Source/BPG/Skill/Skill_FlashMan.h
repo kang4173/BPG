@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "SkillComp.h"
 
+#include "BPG/BaseChar.h"
+
 #include "Skill_FlashMan.generated.h"
 
 /**
@@ -29,5 +31,18 @@ public:
 	virtual void Tbagging() override;
 
 	virtual void ActiveSkill() override;
+
+	virtual void CharacterCall(ACharacter* OwnChar) override;
+
+public:
+	
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void SetCharSpeed();
+
+public:
+
+	UPROPERTY(BlueprintReadOnly)
+	ABaseChar* Char;
+
 };
 

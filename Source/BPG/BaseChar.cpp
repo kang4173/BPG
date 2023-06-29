@@ -47,6 +47,7 @@ void ABaseChar::BeginPlay()
 	if (BaseSkill)
 	{
 		BaseSkill->SKillST = *(kkk->FindRow<FSkillStruct>(RandomNum, FString("")));
+		BaseSkill->CharacterCall(this);
 	}
 	else{ GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("BaseSkill Null")); }
 
@@ -132,6 +133,8 @@ void ABaseChar::MoveRight(float Value)
 
 void ABaseChar::ChangeChar()
 {
+	ResetCharSpeed();
+
 	BaseSkill->DestroyComponent();
 
 	RandomNum = RowName[FMath::RandRange(MINCOUNT, MAXCOUNT)];
@@ -147,10 +150,8 @@ void ABaseChar::ChangeChar()
 	if (BaseSkill)
 	{
 		BaseSkill->SKillST = *(kkk->FindRow<FSkillStruct>(RandomNum, FString("")));
-
-		BaseSkill->CharacterCall(this); // 내 캐릭터를 
+		BaseSkill->CharacterCall(this); 
 	}
 	else { GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("BaseSkill Null")); }
 
-	
 }

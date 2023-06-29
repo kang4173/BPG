@@ -37,6 +37,10 @@ public:
 	UFUNCTION(BlueprintCallable)
 	virtual void CharacterCall(ACharacter* OwnChar) {};
 
+	UFUNCTION(BlueprintCallable)
+	virtual void FindPoint(AActor* Point) {};
+
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FSkillStruct SKillST;
 

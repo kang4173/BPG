@@ -83,4 +83,7 @@ public:
 
 	UFUNCTION()
 	void ChangeChar();
+
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void ResetCharSpeed();
 };

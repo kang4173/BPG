@@ -4,6 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "SkillComp.h"
+
+#include "BPG/ChangePoint.h"
+
 #include "Skill_ReturnMan.generated.h"
 
 /**
@@ -29,4 +32,11 @@ public:
 
 	virtual void ActiveSkill() override;
 
+	virtual void FindPoint(AActor* Point) override;
+
+public:
+
+	AChangePoint* CheckPoint;
+
+	FTimerHandle Timer;
 };

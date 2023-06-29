@@ -5,6 +5,11 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 
+#include "Components/BoxComponent.h"
+#include "Components/StaticMeshComponent.h"
+#include "Components/SceneComponent.h"
+
+#include "BaseChar.h"
 
 #include "ChangePoint.generated.h"
 
@@ -28,8 +33,13 @@ public:
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	class UBoxComponent* Box;
-	class ABaseChar* Character;
+	UBoxComponent* Box;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UStaticMeshComponent* Mesh;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USceneComponent* Scene;
+
+	ABaseChar* Character;
 
 public:
 

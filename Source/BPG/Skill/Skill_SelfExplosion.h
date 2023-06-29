@@ -39,6 +39,4 @@ public:
 	TArray<AActor*> AllChar;
 
 	ABaseChar* Char;
-
-	int A = 0;
 };

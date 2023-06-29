@@ -3,9 +3,6 @@
 
 #include "ChangePoint.h"
 
-#include "Components/BoxComponent.h"
-
-#include "BaseChar.h"
 
 
 // Sets default values
@@ -14,10 +11,15 @@ AChangePoint::AChangePoint()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	
-	Box = CreateDefaultSubobject<UBoxComponent>(TEXT("Box"));
-	RootComponent = Box;
+	Scene = CreateDefaultSubobject<USceneComponent>(TEXT("Scene"));
+	RootComponent = Scene;
 
+	Box = CreateDefaultSubobject<UBoxComponent>(TEXT("Box"));
 	Box->SetRelativeScale3D(FVector(3));
+	Box->SetupAttachment(Scene);
+
+	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+	Mesh->SetupAttachment(Scene);
 	
 }
 
@@ -45,6 +47,7 @@ void AChangePoint::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* O
 	if (Character)
 	{
 		Character->ChangeChar();
+		Character->BaseSkill->FindPoint(this);
 	}
 	
 }

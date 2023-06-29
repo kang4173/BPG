@@ -26,4 +26,14 @@ void USkill_ReturnMan::Tbagging()
 
 void USkill_ReturnMan::ActiveSkill()
 {
+
+}
+
+void USkill_ReturnMan::FindPoint(AActor* Point)
+{
+    CheckPoint = Cast<AChangePoint>(Point);
+    if(CheckPoint)
+    {
+        GetWorld()->GetTimerManager().SetTimer(Timer, this, &USkill_ReturnMan::ActiveSkill, 1.0f, true);
+    }
 }
