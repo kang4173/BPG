@@ -30,9 +30,23 @@ void USkill_SelfExplosion::ActiveSkill()
 {
     UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABaseChar::StaticClass(), AllChar);
 
-    for (int i = 0; i < AllChar.Num(); i++)
+    for (int i = 0; i < AllChar.Num(); i++) // 인게임 내의 캐릭 전부를
     {
-          
-    }
+        Char = Cast<ABaseChar>(AllChar[i]);
+        
+        Char->SetActorLocation(FVector((-1400, 1550, 108)));
+
+        Char->ChangeChar();  // skill을 변경시키는 함수
+    } 
    
 }
+
+void USkill_SelfExplosion::CharacterCall(ACharacter* OwnChar)
+{
+    Char = Cast<ABaseChar>(OwnChar); // 여기에 넘겨주고 
+
+
+   
+}
+
+

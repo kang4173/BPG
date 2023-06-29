@@ -6,8 +6,6 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 
-#include "Skill/SkillComp.h"
-
 // Sets default values
 ABaseChar::ABaseChar()
 {
@@ -35,7 +33,7 @@ void ABaseChar::BeginPlay()
 	Super::BeginPlay();
 
 	RowName = khj->GetRowNames();
-	RandomNum = RowName[FMath::RandRange(2, 2)];
+	RandomNum = RowName[FMath::RandRange(MINCOUNT, MAXCOUNT)];
 
 	MainST = *(khj->FindRow<FMainStruct>(RandomNum, FString("")));
 
@@ -136,19 +134,23 @@ void ABaseChar::ChangeChar()
 {
 	BaseSkill->DestroyComponent();
 
-	RandomNum = RowName[FMath::RandRange(2, 2)];
+	RandomNum = RowName[FMath::RandRange(MINCOUNT, MAXCOUNT)];
 
 	MainST = *(khj->FindRow<FMainStruct>(RandomNum, FString("")));
 
 	if (&MainST)
 	{
-		BaseSkill = Cast<USkillComp>(AddComponentByClass(USkillComp::StaticClass(), true, GetTransform(), false));
+		BaseSkill = Cast<USkillComp>(AddComponentByClass(MainST.BaseSkillComp, true, GetTransform(), false));
 	}
 	else { GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("MainST Null")); }
 
 	if (BaseSkill)
 	{
 		BaseSkill->SKillST = *(kkk->FindRow<FSkillStruct>(RandomNum, FString("")));
+
+		BaseSkill->CharacterCall(this); // 내 캐릭터를 
 	}
 	else { GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("BaseSkill Null")); }
+
+	
 }

@@ -30,10 +30,4 @@ void USkillComp::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 	// ...
 }
 
-//void USkillComp::Tbagging()
-//{
-//}
-//
-//void USkillComp::ActiveSkill()
-//{
-//}
+

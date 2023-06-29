@@ -32,11 +32,13 @@ public:
 
 	virtual void ActiveSkill() override;
 
+	virtual void CharacterCall(ACharacter* OwnChar) override;
+
 public:
 
 	TArray<AActor*> AllChar;
 
-	class ABaseChar* Char;
+	ABaseChar* Char;
 
 	int A = 0;
 };

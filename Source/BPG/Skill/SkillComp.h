@@ -34,6 +34,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	virtual void ActiveSkill() {};
 
+	UFUNCTION(BlueprintCallable)
+	virtual void CharacterCall(ACharacter* OwnChar) {};
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FSkillStruct SKillST;
 
@@ -41,7 +44,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UStaticMesh* Mesh;
-
 
 		
 };

@@ -10,6 +10,9 @@
 
 #include "BaseChar.generated.h"
 
+#define MINCOUNT 0
+#define MAXCOUNT 2
+
 
 UCLASS()
 class BPG_API ABaseChar : public ACharacter
@@ -68,7 +71,7 @@ public:
 	FMainStruct MainST;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	class USkillComp* BaseSkill;
+	USkillComp* BaseSkill;
 
 	UPROPERTY(BlueprintReadWrite)
 	FName RandomNum;
