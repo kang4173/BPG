@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Components/StaticMeshComponent.h"
 
 #include "MainStruct.h"
 #include "Skill/SkillComp.h"
@@ -67,6 +68,9 @@ public:
 
 
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UStaticMeshComponent* sphere;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FMainStruct MainST;
 

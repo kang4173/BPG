@@ -27,7 +27,15 @@ void USkill_ReturnMan::Tbagging()
 void USkill_ReturnMan::ActiveSkill()
 {
 
+    FVector MeshLoc = CheckPoint->Mesh->GetComponentLocation();
+    FVector CharLoc = Char->GetActorLocation();
+  //  Char->AddActorLocalOffset(MeshLoc - CharLoc);
+    float Distance = FVector::DistSquared(MeshLoc, CharLoc);
+
+    FVector NewLocation = FMath::Lerp(MeshLoc, CharLoc, 1);
+    Char->SetActorLocation(NewLocation);
 }
+  
 
 void USkill_ReturnMan::FindPoint(AActor* Point)
 {
@@ -35,8 +43,6 @@ void USkill_ReturnMan::FindPoint(AActor* Point)
     if(CheckPoint)
     {
         GetWorld()->GetTimerManager().SetTimer(Timer, this, &USkill_ReturnMan::ActiveSkill, 1.0f, true);
-        CheckPoint->Mesh->Get
-
     }
 }
 

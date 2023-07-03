@@ -21,6 +21,15 @@ ABaseChar::ABaseChar()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	FollowCamera->bUsePawnControlRotation = false;
 
+	sphere = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+	sphere->SetupAttachment(RootComponent);
+
+	static ConstructorHelpers::FObjectFinder<UStaticMeshComponent> MyMesh(TEXT("StaticMesh'/Engine/BasicShapes/Sphere.Sphere'"));
+	if (MyMesh.Succeeded())
+	{
+		sphere = MyMesh.Object;
+	}
+
 	BaseSkill = CreateDefaultSubobject<USkillComp>(TEXT("BaseSkill"));
 
 	khj = LoadObject<UDataTable>(nullptr, TEXT("DataTable'/Game/BPG/KHJ/Base/khj.khj'"));
@@ -35,24 +44,6 @@ void ABaseChar::BeginPlay()
 	RowName = khj->GetRowNames();
 
 	ChangeChar();
-//	RandomNum = RowName[FMath::RandRange(MINCOUNT, MAXCOUNT)];
-//
-//	MainST = *(khj->FindRow<FMainStruct>(RandomNum, FString("")));
-//
-//	if(&MainST)
-//	{ 
-//		//BaseSkill = Cast<USkillComp>(AddComponentByClass(USkillComp::StaticClass(), true, GetTransform(), false));
-//		BaseSkill = Cast<USkillComp>(AddComponentByClass(MainST.BaseSkillComp, true, GetTransform(), false));
-//	}
-//	else{ GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("MainST Null")); }
-//
-//	if (BaseSkill)
-//	{
-//		BaseSkill->SKillST = *(kkk->FindRow<FSkillStruct>(RandomNum, FString("")));
-//		BaseSkill->CharacterCall(this);
-//	}
-//	else{ GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("BaseSkill Null")); }
-
 }
 
 // Called every frame
