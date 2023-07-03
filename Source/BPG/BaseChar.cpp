@@ -24,10 +24,10 @@ ABaseChar::ABaseChar()
 	sphere = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	sphere->SetupAttachment(RootComponent);
 
-	static ConstructorHelpers::FObjectFinder<UStaticMeshComponent> MyMesh(TEXT("StaticMesh'/Engine/BasicShapes/Sphere.Sphere'"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MyMesh(TEXT("StaticMesh'/Engine/BasicShapes/Sphere.Sphere'"));
 	if (MyMesh.Succeeded())
 	{
-		sphere = MyMesh.Object;
+		sphere->SetStaticMesh(MyMesh.Object);
 	}
 
 	BaseSkill = CreateDefaultSubobject<USkillComp>(TEXT("BaseSkill"));
