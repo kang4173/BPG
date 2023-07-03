@@ -33,23 +33,25 @@ void ABaseChar::BeginPlay()
 	Super::BeginPlay();
 
 	RowName = khj->GetRowNames();
-	RandomNum = RowName[FMath::RandRange(MINCOUNT, MAXCOUNT)];
 
-	MainST = *(khj->FindRow<FMainStruct>(RandomNum, FString("")));
-
-	if(&MainST)
-	{ 
-		//BaseSkill = Cast<USkillComp>(AddComponentByClass(USkillComp::StaticClass(), true, GetTransform(), false));
-		BaseSkill = Cast<USkillComp>(AddComponentByClass(MainST.BaseSkillComp, true, GetTransform(), false));
-	}
-	else{ GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("MainST Null")); }
-
-	if (BaseSkill)
-	{
-		BaseSkill->SKillST = *(kkk->FindRow<FSkillStruct>(RandomNum, FString("")));
-		BaseSkill->CharacterCall(this);
-	}
-	else{ GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("BaseSkill Null")); }
+	ChangeChar();
+//	RandomNum = RowName[FMath::RandRange(MINCOUNT, MAXCOUNT)];
+//
+//	MainST = *(khj->FindRow<FMainStruct>(RandomNum, FString("")));
+//
+//	if(&MainST)
+//	{ 
+//		//BaseSkill = Cast<USkillComp>(AddComponentByClass(USkillComp::StaticClass(), true, GetTransform(), false));
+//		BaseSkill = Cast<USkillComp>(AddComponentByClass(MainST.BaseSkillComp, true, GetTransform(), false));
+//	}
+//	else{ GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("MainST Null")); }
+//
+//	if (BaseSkill)
+//	{
+//		BaseSkill->SKillST = *(kkk->FindRow<FSkillStruct>(RandomNum, FString("")));
+//		BaseSkill->CharacterCall(this);
+//	}
+//	else{ GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("BaseSkill Null")); }
 
 }
 

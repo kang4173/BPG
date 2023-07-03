@@ -6,6 +6,7 @@
 #include "SkillComp.h"
 
 #include "BPG/ChangePoint.h"
+#include "BPG/BaseChar.h"
 
 #include "Skill_ReturnMan.generated.h"
 
@@ -34,9 +35,13 @@ public:
 
 	virtual void FindPoint(AActor* Point) override;
 
+	virtual void CharacterCall(ACharacter* OwnChar) override;
+
 public:
 
 	AChangePoint* CheckPoint;
+
+	ABaseChar* Char;
 
 	FTimerHandle Timer;
 };

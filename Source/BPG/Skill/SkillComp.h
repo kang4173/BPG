@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 
+
 #include "BPG/SkillStruct.h"
 
 #include "SkillComp.generated.h"

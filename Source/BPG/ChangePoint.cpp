@@ -28,7 +28,8 @@ void AChangePoint::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	Box->OnComponentBeginOverlap.AddDynamic(this, &AChangePoint::OnOverlapBegin);
+	Box->OnComponentBeginOverlap.AddDynamic(this, &AChangePoint::OnBoxOverlapBegin);
+	Mesh->OnComponentBeginOverlap.AddDynamic(this, &AChangePoint::OnMeshOverlapBegin);
 
 }
 
@@ -39,7 +40,7 @@ void AChangePoint::Tick(float DeltaTime)
 
 }
 
-void AChangePoint::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, 
+void AChangePoint::OnBoxOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	Character = Cast<ABaseChar>(OtherActor);
@@ -47,8 +48,18 @@ void AChangePoint::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* O
 	if (Character)
 	{
 		Character->ChangeChar();
-		Character->BaseSkill->FindPoint(this);
 	}
 	
+}
+
+void AChangePoint::OnMeshOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	Character = Cast<ABaseChar>(OtherActor);
+
+	if (Character)
+	{
+		Character->BaseSkill->FindPoint(this);
+		
+	}
 }
 

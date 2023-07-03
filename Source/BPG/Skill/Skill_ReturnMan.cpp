@@ -35,5 +35,13 @@ void USkill_ReturnMan::FindPoint(AActor* Point)
     if(CheckPoint)
     {
         GetWorld()->GetTimerManager().SetTimer(Timer, this, &USkill_ReturnMan::ActiveSkill, 1.0f, true);
+        CheckPoint->Mesh->Get
+
     }
+}
+
+void USkill_ReturnMan::CharacterCall(ACharacter* OwnChar)
+{
+    Char = Cast<ABaseChar>(OwnChar);
+
 }
