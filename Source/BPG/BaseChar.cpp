@@ -24,7 +24,7 @@ ABaseChar::ABaseChar()
 	sphere = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	sphere->SetupAttachment(RootComponent);
 
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> MyMesh(TEXT("StaticMesh'/Engine/BasicShapes/Sphere.Sphere'"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MyMesh(TEXT("StaticMesh'/Game/BPG/Sphere_Mesh.Sphere_Mesh'"));
 	if (MyMesh.Succeeded())
 	{
 		sphere->SetStaticMesh(MyMesh.Object);
