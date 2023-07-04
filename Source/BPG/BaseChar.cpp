@@ -128,7 +128,7 @@ void ABaseChar::ChangeChar()
 {
 	ResetCharSpeed();
 
-	//FTimerManager::IsTimerActive(BaseSkill->Timer)
+	GetWorld()->GetTimerManager().ClearTimer(BaseSkill->Timer);
 
 	BaseSkill->DestroyComponent();
 

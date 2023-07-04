@@ -24,20 +24,15 @@ void USkill_ReturnMan::Tbagging()
 {
 }
 
+// box 에 오버랩 되지 않은상태로 실행 시 MeshLoc의 값은 제자리로 됨
 void USkill_ReturnMan::ActiveSkill()
 {
     Char->SetActorLocation(MeshLoc);
-    
 }
   
 
 void USkill_ReturnMan::FindPoint(FVector Loc)
 {
-//    CheckPoint = Cast<AChangePoint>(Point);
-//    if(CheckPoint->Mesh)
-//    {
-//        GetWorld()->GetTimerManager().SetTimer(Timer, this, &USkill_ReturnMan::ActiveSkill, DelayTime, true, DelayTime);
-//    }
     MeshLoc = Loc;
     GetWorld()->GetTimerManager().SetTimer(Timer, this, &USkill_ReturnMan::ActiveSkill, DelayTime, true, DelayTime);
 }

@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Components/StaticMeshComponent.h"
+#include "Kismet/KismetSystemLibrary.h"
+#include "TimerManager.h"
 
 #include "MainStruct.h"
 #include "Skill/SkillComp.h"
@@ -79,6 +81,10 @@ public:
 
 	UPROPERTY(BlueprintReadWrite)
 	FName RandomNum;
+
+//	FTimerManager* TimerClear;
+
+	bool bReturnManTimer = false;
 	
 	TArray<FName> RowName;
 

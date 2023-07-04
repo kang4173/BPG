@@ -10,7 +10,7 @@
 
 #include "Skill_ReturnMan.generated.h"
 
-#define DelayTime 1.0f
+#define DelayTime 5.0f
 
 /**
  * 

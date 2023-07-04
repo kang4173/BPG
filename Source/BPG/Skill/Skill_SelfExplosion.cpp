@@ -26,6 +26,8 @@ void USkill_SelfExplosion::Tbagging()
 {
 }
 
+
+// 처음 시작 시 터뜨리면 위치는 어디? 오버랩 되지 않은 상태로 MeshLoc을 호출하면 제자리
 void USkill_SelfExplosion::ActiveSkill()
 {
     UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABaseChar::StaticClass(), AllChar);
