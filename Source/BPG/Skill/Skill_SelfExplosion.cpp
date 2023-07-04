@@ -33,12 +33,25 @@ void USkill_SelfExplosion::ActiveSkill()
     for (int i = 0; i < AllChar.Num(); i++) 
     {
         Char = Cast<ABaseChar>(AllChar[i]);
-        
-        Char->SetActorLocation(FVector((-1400, 1550, 108)));
+
+        Char->SetActorLocation(MeshLoc);
+
+        //Char->SetActorLocation(FVector((-1400, 1550, 108)));
 
         Char->ChangeChar();  
     } 
    
+}
+
+void USkill_SelfExplosion::FindPoint(FVector Loc)
+{
+//    CheckPoint = Cast<AChangePoint>(Point);
+//    if (CheckPoint->Mesh)
+//    {
+//        GEngine->AddOnScreenDebugMessage(-1, 15, FColor::White, TEXT("FindPoint"));
+//    }
+    MeshLoc = Loc;
+
 }
 
 void USkill_SelfExplosion::CharacterCall(ACharacter* OwnChar)

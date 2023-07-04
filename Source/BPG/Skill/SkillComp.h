@@ -39,11 +39,12 @@ public:
 	virtual void CharacterCall(ACharacter* OwnChar) {};
 
 	UFUNCTION(BlueprintCallable)
-	virtual void FindPoint(AActor* Point) {};
-
+	virtual void FindPoint(FVector Loc) {};
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FSkillStruct SKillST;
+
+	FTimerHandle Timer;
 
 public:
 

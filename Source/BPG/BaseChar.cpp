@@ -128,6 +128,8 @@ void ABaseChar::ChangeChar()
 {
 	ResetCharSpeed();
 
+	//FTimerManager::IsTimerActive(BaseSkill->Timer)
+
 	BaseSkill->DestroyComponent();
 
 	RandomNum = RowName[FMath::RandRange(MINCOUNT, MAXCOUNT)];

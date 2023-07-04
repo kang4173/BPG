@@ -41,6 +41,8 @@ public:
 
 	ABaseChar* Character;
 
+	FVector MeshLoc;
+
 public:
 
 	UFUNCTION()

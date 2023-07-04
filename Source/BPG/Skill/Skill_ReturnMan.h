@@ -10,6 +10,8 @@
 
 #include "Skill_ReturnMan.generated.h"
 
+#define DelayTime 1.0f
+
 /**
  * 
  */
@@ -33,7 +35,7 @@ public:
 
 	virtual void ActiveSkill() override;
 
-	virtual void FindPoint(AActor* Point) override;
+	virtual void FindPoint(FVector Loc) override;
 
 	virtual void CharacterCall(ACharacter* OwnChar) override;
 
@@ -43,5 +45,5 @@ public:
 
 	ABaseChar* Char;
 
-	FTimerHandle Timer;
+	FVector MeshLoc;
 };

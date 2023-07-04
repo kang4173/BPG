@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "SkillComp.h"
 
+#include "BPG/ChangePoint.h"
 #include "BPG/BaseChar.h"
 
 #include "Skill_SelfExplosion.generated.h"
@@ -32,11 +33,17 @@ public:
 
 	virtual void ActiveSkill() override;
 
+	virtual void FindPoint(FVector Loc) override;
+
 	virtual void CharacterCall(ACharacter* OwnChar) override;
 
 public:
 
 	TArray<AActor*> AllChar;
 
+	AChangePoint* CheckPoint;
+
 	ABaseChar* Char;
+
+	FVector MeshLoc;
 };
