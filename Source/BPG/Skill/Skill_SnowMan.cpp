@@ -41,26 +41,41 @@ void USkill_SnowMan::Tbagging()
 
 void USkill_SnowMan::ActiveSkill()
 {
-    //SKillST.SkillRadius
 
+   
+    UStaticMeshComponent* SnomManSphere= Char->sphere;
+   
+    if (!SnomManSphere)
+    {
+        // 구체 컴포넌트가 없으면 리턴
+        return;
+    }
+
+    // 겹치는 액터 정보 가져오기
+    //TArray<ABaseChar*> OverlappingActors;
+    TArray<AActor*> OverlappingActors;
     
-
+    SnomManSphere->GetOverlappingActors(OverlappingActors , ABaseChar::StaticClass());
+    for (AActor* Actor : OverlappingActors)
+    {
+        if (Actor->ActorHasTag("Sector1"))
+        {
+            float DamageAmount = 100.f;  
+            FDamageEvent DamageEvent;
+            DamageEvent.DamageTypeClass = UDamageType::StaticClass();
+            UGameplayStatics::ApplyDamage(Actor , DamageAmount , nullptr , nullptr , UDamageType::StaticClass());
+        }
+    }
 }
 
 void USkill_SnowMan::CharacterCall(ACharacter* OwnChar)
 {
     Char = Cast<ABaseChar>(OwnChar); 
+    Char->sphere->SetRelativeScale3D(FVector(5,5,5));
     //if (Char)
     //{
     //    SpaawnBox();
     //}
 }
 
-void USkill_SnowMan::SpaawnBox()
-{
 
-    //UBoxComponent* BoxComponent = NewObject<UBoxComponent>();
-
-    
-
-}

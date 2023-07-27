@@ -40,8 +40,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	float BaseLookUpRate;
 
-protected:
 
+protected:
 	void MoveForward(float Value);
 
 	void MoveRight(float Value);

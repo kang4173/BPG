@@ -43,5 +43,5 @@ public:
 	//FBox* ExSpawnBox;
 
 
-	void SpaawnBox();
+	
 };
