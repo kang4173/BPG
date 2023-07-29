@@ -96,4 +96,15 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void ResetCharSpeed();
+
+	UCharacterMovementComponent* CopyMovementCom;
+
+	
+	UFUNCTION(BlueprintCallable , BlueprintNativeEvent)
+	void CharReset();
+
+	UPROPERTY(BlueprintReadWrite , EditAnywhere)
+	FTransform CharTransform;
+
+
 };

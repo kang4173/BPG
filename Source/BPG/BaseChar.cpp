@@ -34,6 +34,8 @@ ABaseChar::ABaseChar()
 
 	khj = LoadObject<UDataTable>(nullptr, TEXT("DataTable'/Game/BPG/KHJ/Base/khj.khj'"));
 	kkk = LoadObject<UDataTable>(nullptr, TEXT("DataTable'/Game/BPG/KHJ/Base/kkk.kkk'"));
+
+	CopyMovementCom= GetCharacterMovement();
 }
 
 // Called when the game starts or when spawned
@@ -130,7 +132,11 @@ void ABaseChar::ChangeChar()
 
 	GetWorld()->GetTimerManager().ClearTimer(BaseSkill->Timer);
 
+	CharReset();
+
 	BaseSkill->DestroyComponent();
+
+	CharTransform = GetActorTransform();
 
 	RandomNum = RowName[FMath::RandRange(MINCOUNT, MAXCOUNT)];
 
@@ -139,6 +145,7 @@ void ABaseChar::ChangeChar()
 	if (&MainST)
 	{
 		BaseSkill = Cast<USkillComp>(AddComponentByClass(MainST.BaseSkillComp, true, GetTransform(), false));
+		
 	}
 	else { GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("MainST Null")); }
 
@@ -149,4 +156,18 @@ void ABaseChar::ChangeChar()
 	}
 	else { GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("BaseSkill Null")); }
 
+}
+
+
+
+void ABaseChar::CharReset_Implementation()
+{
+	UCharacterMovementComponent* OriginStat=GetCharacterMovement();
+	OriginStat=CopyMovementCom;
+	
+	if (CharTransform.GetTranslation() == FVector::ZeroVector &&CharTransform.GetRotation() == FQuat::Identity &&CharTransform.GetScale3D() == FVector(1.f , 1.f , 1.f))
+	{
+		FTransform OriginTransform= GetActorTransform();
+		OriginTransform=CharTransform;
+	}
 }

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "BPG/BaseChar.h"
+#include "Particles/ParticleSystemComponent.h"
 #include "Missile.generated.h"
 
 UCLASS()
@@ -23,14 +24,29 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UPROPERTY(EditAnywhere , BlueprintReadWrite)
 	UStaticMeshComponent* Mesh;
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void OnOverlapBegin(UPrimitiveComponent* OverlappedComp , AActor* OtherActor , UPrimitiveComponent* OtherComp , int32 OtherBodyIndex , bool bFromSweep , const FHitResult& SweepResult);
 
 	UFUNCTION()
 	void OnOverlapEnd(UPrimitiveComponent* OverlappedComp , AActor* OtherActor , UPrimitiveComponent* OtherComp , int32 OtherBodyIndex);
 
 	ABaseChar* Owner;
+
+	UPROPERTY(EditAnywhere , BlueprintReadWrite)
+	UParticleSystem* Particle;
+
+	UPROPERTY(EditAnywhere , BlueprintReadWrite)
+	UParticleSystemComponent* SettingEmitter;
+
+
+	void CollisionSet();
+
+	FTimerHandle  TimerHandle;
+	
+
 
 };
