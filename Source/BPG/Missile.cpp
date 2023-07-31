@@ -52,14 +52,16 @@ void AMissile::Tick(float DeltaTime)
 void AMissile::OnOverlapBegin(UPrimitiveComponent* OverlappedComp , AActor* OtherActor , UPrimitiveComponent* OtherComp , int32 OtherBodyIndex , bool bFromSweep , const FHitResult& SweepResult)
 {
 	//Cast<ABaseChar>(OtherActor) != Owner || Cast<UStaticMeshComponent>(OverlappedComp) != Owner->sphere|| Cast<USkeletalMeshComponent>(OverlappedComp)!=Owner->GetMesh()
-	if ( Cast<ABaseChar>(OtherActor))
+	
+	if (IsValid(Owner))
 	{
-		
-		if (OtherActor!= Owner)
+		if (OtherActor != Owner)
 		{
-			GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::White , TEXT("hh"));
+			//GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::White , TEXT("hh"));
 			GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Green , FString::Printf(TEXT("OtherActor: %s") , *(OtherActor->GetName())));
+			//GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Red , FString::Printf(TEXT("Owner: %s") , *(Owner->GetName())));
 			//GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Black , FString::Printf(TEXT("Owner: %s") , *(Owner->GetName())));
+
 			if (Cast<UStaticMeshComponent>(OverlappedComp))
 			{
 				GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Magenta , FString::Printf(TEXT("OverlappedComp: %s") , *(OverlappedComp->GetName())));
@@ -97,11 +99,7 @@ void AMissile::OnOverlapBegin(UPrimitiveComponent* OverlappedComp , AActor* Othe
 				}
 			}
 		}
-		
-		
-		
-		
-	}
+	}	
 }
 
 void AMissile::OnOverlapEnd(UPrimitiveComponent* OverlappedComp , AActor* OtherActor , UPrimitiveComponent* OtherComp , int32 OtherBodyIndex)

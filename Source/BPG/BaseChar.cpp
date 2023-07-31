@@ -5,6 +5,7 @@
 
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
 ABaseChar::ABaseChar()
@@ -132,11 +133,15 @@ void ABaseChar::ChangeChar()
 
 	GetWorld()->GetTimerManager().ClearTimer(BaseSkill->Timer);
 
-	CharReset();
+	//CharReset();
 
 	BaseSkill->DestroyComponent();
 
-	CharTransform = GetActorTransform();
+	//CharTransform = GetActorTransform();
+
+	//구역 넘어가면 바꾸게 위칫값 넣어주면 됨
+	
+	//CharTransform = FTransform( GetActorRotation(),FVector( -330.0f , 30.0f , 108.0f),GetActorScale());
 
 	RandomNum = RowName[FMath::RandRange(MINCOUNT, MAXCOUNT)];
 
@@ -162,9 +167,15 @@ void ABaseChar::ChangeChar()
 
 void ABaseChar::CharReset_Implementation()
 {
+	GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Emerald , FString::Printf(TEXT("gravityscale: %f") , GetCharacterMovement()->GravityScale));
 	UCharacterMovementComponent* OriginStat=GetCharacterMovement();
-	OriginStat=CopyMovementCom;
+	OriginStat->GravityScale= CopyMovementCom->GravityScale;
+	GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Black , FString::Printf(TEXT("gravityscale: %f") , GetCharacterMovement()->GravityScale));
+
+	//OriginStat=CopyMovementCom;
 	
+	
+
 	if (CharTransform.GetTranslation() == FVector::ZeroVector &&CharTransform.GetRotation() == FQuat::Identity &&CharTransform.GetScale3D() == FVector(1.f , 1.f , 1.f))
 	{
 		FTransform OriginTransform= GetActorTransform();

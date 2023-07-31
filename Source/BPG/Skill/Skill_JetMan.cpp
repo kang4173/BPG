@@ -47,12 +47,16 @@ void USkill_JetMan::Tbagging()
 
 void USkill_JetMan::ActiveSkill()
 {
-    for (int i=0;i<2;i++)
+    for (int i=0;i<6;i++)
     { 
         AMissile* Missile;
         FVector Baselocation= ((Char->GetActorLocation()) - (Char->GetActorForwardVector() * 200));
-        FVector SpawnlocationA= ((Char->GetActorLocation()) - (Char->GetActorForwardVector() * 200)+ (Char->GetActorRightVector()*100));
-        FVector SpawnlocationB = ((Char->GetActorLocation()) - (Char->GetActorForwardVector() * 200)- (Char->GetActorRightVector()*100));
+        FVector SpawnlocationA= ((Char->GetActorLocation()) - (Char->GetActorForwardVector() * 200)+ (Char->GetActorRightVector()*100) - (Char->GetActorUpVector() * 200));
+        FVector SpawnlocationB = ((Char->GetActorLocation()) - (Char->GetActorForwardVector() * 200)- (Char->GetActorRightVector()*100) - (Char->GetActorUpVector() * 200));
+        FVector SpawnlocationC= ((Char->GetActorLocation()) - (Char->GetActorForwardVector() * 400)+ (Char->GetActorRightVector()*100) - (Char->GetActorUpVector() * 300));
+        FVector SpawnlocationD = ((Char->GetActorLocation()) - (Char->GetActorForwardVector() * 400)- (Char->GetActorRightVector()*100) - (Char->GetActorUpVector() * 300));
+        FVector SpawnlocationE= ((Char->GetActorLocation()) - (Char->GetActorForwardVector() * 600)+ (Char->GetActorRightVector()*100) - (Char->GetActorUpVector() * 400));
+        FVector SpawnlocationF = ((Char->GetActorLocation()) - (Char->GetActorForwardVector() * 600)- (Char->GetActorRightVector()*100) - (Char->GetActorUpVector() * 400));
         //FVector SpawnlocationB= ((Char->GetActorLocation()) - (Char->GetActorForwardVector() * 200));
         FVector BaseRightlocation= ((Char->GetActorLocation()) - (Char->GetActorRightVector() * 200));
 
@@ -69,11 +73,12 @@ void USkill_JetMan::ActiveSkill()
             //Missile= GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , FVector(((((Char->GetActorLocation()) - (Char->GetActorForwardVector()*200)).X, (((Char->GetActorLocation())  - (Char->GetActorForwardVector() * 200))  - (Char->GetActorRightVector() * 100))).Y , (((Char->GetActorLocation()) - (Char->GetActorForwardVector() * 200)- (Char->GetActorUpVector() * 200)).Z ) , FRotator(0 , Char->GetActorRotation().Yaw , 0));
             //Missile= GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , FVector(Baselocation.X, ((Baselocation) - (Char->GetActorRightVector() * 200)).Y, ((Baselocation-(Char->GetActorUpVector() * 200))).Z), FRotator(Char->GetActorRotation().Yaw , 0 , 0));
             //FVector SpawnlocationA = ((Char->GetActorLocation()) - (Char->GetActorForwardVector() * 200) + (Char->GetActorRightVector() * 100));
-            Missile= GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , SpawnlocationA , FRotator(0 , 0 , Char->GetActorRotation().Yaw));
+            Missile= GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , SpawnlocationA , Char->GetActorRotation());
+            //Missile= GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , Char->GetActorLocation() , Char->GetActorRotation());
             SetOwner(Missile);
             break;
         case 1:
-            Missile= GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , SpawnlocationB , FRotator(0 , 0 , Char->GetActorRotation().Yaw));
+            Missile= GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , SpawnlocationB , Char->GetActorRotation());
             //Missile= GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , FVector(Baselocation.X, ((Baselocation) + (Char->GetActorRightVector() * 200)).Y, ((Baselocation-(Char->GetActorUpVector() * 200))).Z), FRotator(Char->GetActorRotation().Yaw , 0 , 0));
             //Missile= GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , FVector(((((Char->GetActorLocation()) - (Char->GetActorForwardVector()*200)).X, (((Char->GetActorLocation())  - (Char->GetActorForwardVector() * 200))  - (Char->GetActorRightVector() * 100))).Y , (((Char->GetActorLocation()) - (Char->GetActorForwardVector() * 200)- (Char->GetActorUpVector() * 200)).Z ) , FRotator(0 , Char->GetActorRotation().Yaw , 0));
             //Missile= GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , FVector(((Char->GetActorLocation()) - (Char->GetActorForwardVector()*200)).X, (((Char->GetActorLocation()) - (Char->GetActorForwardVector() * 200))- (Char->GetActorRightVector() * 200)).Y , ((Char->GetActorLocation()) - (Char->GetActorForwardVector() * 200)).Z -300) , FRotator(0 , Char->GetActorRotation().Yaw , 0));
@@ -83,22 +88,25 @@ void USkill_JetMan::ActiveSkill()
             //SetOwner(Missile);
             break;
         case 2:
-            Missile= GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , FVector(((Char->GetActorLocation()) - (Char->GetActorRightVector()*200)).X, ((Char->GetActorLocation()) - (Char->GetActorForwardVector()*300)).Y , ((Char->GetActorLocation()) - (Char->GetActorUpVector()*300)).Z) , Char->GetActorRotation());
+            Missile= GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , SpawnlocationC , Char->GetActorRotation());
             //Missile = GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , FVector(Char->GetActorLocation().X+100 , Char->GetActorLocation().Y-100 , Char->GetActorLocation().Z - 230) * Char->GetActorForwardVector() , Char->GetControlRotation());
             SetOwner(Missile);
             break;
         case 3:
-            Missile= GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , FVector(((Char->GetActorLocation()) + (Char->GetActorRightVector()*200)).X, ((Char->GetActorLocation()) - (Char->GetActorForwardVector()*300)).Y , ((Char->GetActorLocation()) - (Char->GetActorUpVector()*300)).Z) , Char->GetActorRotation());
+            Missile = GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , SpawnlocationD , Char->GetActorRotation());
+            //Missile= GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , FVector(((Char->GetActorLocation()) + (Char->GetActorRightVector()*200)).X, ((Char->GetActorLocation()) - (Char->GetActorForwardVector()*300)).Y , ((Char->GetActorLocation()) - (Char->GetActorUpVector()*300)).Z) , Char->GetActorRotation());
             //Missile = GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , FVector(Char->GetActorLocation().X-100 , Char->GetActorLocation().Y-100 , Char->GetActorLocation().Z - 230) * Char->GetActorForwardVector() , Char->GetControlRotation());
             SetOwner(Missile);
             break;
         case 4:
-            Missile= GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , FVector(((Char->GetActorLocation()) - (Char->GetActorRightVector()*200)).X, ((Char->GetActorLocation()) - (Char->GetActorForwardVector()*500)).Y , ((Char->GetActorLocation()) - (Char->GetActorUpVector()*300)).Z) , Char->GetActorRotation());
+            Missile = GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , SpawnlocationE , Char->GetActorRotation());
+            //Missile= GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , FVector(((Char->GetActorLocation()) - (Char->GetActorRightVector()*200)).X, ((Char->GetActorLocation()) - (Char->GetActorForwardVector()*500)).Y , ((Char->GetActorLocation()) - (Char->GetActorUpVector()*300)).Z) , Char->GetActorRotation());
             //Missile = GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , FVector(Char->GetActorLocation().X+100 , Char->GetActorLocation().Y-200 , Char->GetActorLocation().Z - 260) * Char->GetActorForwardVector() , Char->GetControlRotation());
             SetOwner(Missile);
             break;
         case 5:
-            Missile= GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , FVector(((Char->GetActorLocation()) + (Char->GetActorRightVector()*200)).X, ((Char->GetActorLocation()) - (Char->GetActorForwardVector()*500)).Y , ((Char->GetActorLocation()) - (Char->GetActorUpVector()*300)).Z) , Char->GetActorRotation());
+            Missile = GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , SpawnlocationF , Char->GetActorRotation());
+            //Missile= GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , FVector(((Char->GetActorLocation()) + (Char->GetActorRightVector()*200)).X, ((Char->GetActorLocation()) - (Char->GetActorForwardVector()*500)).Y , ((Char->GetActorLocation()) - (Char->GetActorUpVector()*300)).Z) , Char->GetActorRotation());
             //Missile = GetWorld()->SpawnActor<AMissile>(AMissile::StaticClass() , FVector(Char->GetActorLocation().X-100 , Char->GetActorLocation().Y-200 , Char->GetActorLocation().Z - 260) * Char->GetActorForwardVector() , Char->GetControlRotation());
             SetOwner(Missile);
             break;
