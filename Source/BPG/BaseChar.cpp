@@ -36,7 +36,8 @@ ABaseChar::ABaseChar()
 	khj = LoadObject<UDataTable>(nullptr, TEXT("DataTable'/Game/BPG/KHJ/Base/khj.khj'"));
 	kkk = LoadObject<UDataTable>(nullptr, TEXT("DataTable'/Game/BPG/KHJ/Base/kkk.kkk'"));
 
-	CopyMovementCom= GetCharacterMovement();
+	//CopyMovementCom= GetCharacterMovement();
+	CopyMovementCom= CreateDefaultSubobject<UCharacterMovementComponent>(TEXT("CopyMoveComp"));
 }
 
 // Called when the game starts or when spawned
@@ -167,18 +168,32 @@ void ABaseChar::ChangeChar()
 
 void ABaseChar::CharReset_Implementation()
 {
-	GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Emerald , FString::Printf(TEXT("gravityscale: %f") , GetCharacterMovement()->GravityScale));
+
+	if (CharTransform.GetTranslation() == FVector::ZeroVector && CharTransform.GetRotation() == FQuat::Identity && CharTransform.GetScale3D() == FVector(1.f , 1.f , 1.f))
+	{
+		//FTransform OriginTransform= GetActorTransform();
+		//OriginTransform=CharTransform;
+		//SetActorTransform(CharTransform);
+	}
+	SetActorTransform(CharTransform);
+	GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Emerald , FString::Printf(TEXT("beforegravityscale: %f") , GetCharacterMovement()->GravityScale));
+	GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Emerald , FString::Printf(TEXT("beforeGetMovementName: %s") , *(GetCharacterMovement()->GetName())));
 	UCharacterMovementComponent* OriginStat=GetCharacterMovement();
-	OriginStat->GravityScale= CopyMovementCom->GravityScale;
-	GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Black , FString::Printf(TEXT("gravityscale: %f") , GetCharacterMovement()->GravityScale));
+	//OriginStat->GravityScale= CopyMovementCom->GravityScale;
+	GetCharacterMovement()->GravityScale = CopyMovementCom->GravityScale;
+
+	GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Emerald , FString::Printf(TEXT("CopyMovementCom->GravityScale: %f") , CopyMovementCom->GravityScale));
+	GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Emerald , FString::Printf(TEXT("gravityscale: %f") , GetCharacterMovement()->GravityScale));
+	GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Black , FString::Printf(TEXT("Aftergravityscale: %f") , GetCharacterMovement()->GravityScale));
 
 	//OriginStat=CopyMovementCom;
 	
 	
 
-	if (CharTransform.GetTranslation() == FVector::ZeroVector &&CharTransform.GetRotation() == FQuat::Identity &&CharTransform.GetScale3D() == FVector(1.f , 1.f , 1.f))
-	{
-		FTransform OriginTransform= GetActorTransform();
-		OriginTransform=CharTransform;
-	}
+	//if (CharTransform.GetTranslation() == FVector::ZeroVector &&CharTransform.GetRotation() == FQuat::Identity &&CharTransform.GetScale3D() == FVector(1.f , 1.f , 1.f))
+	//{
+	//	//FTransform OriginTransform= GetActorTransform();
+	//	//OriginTransform=CharTransform;
+	//	SetActorTransform(CharTransform);
+	//}
 }

@@ -97,6 +97,7 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void ResetCharSpeed();
 
+	UPROPERTY(EditAnywhere , BlueprintReadWrite)
 	UCharacterMovementComponent* CopyMovementCom;
 
 	
