@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "SkillComp.h"
 #include "BPG/BaseChar.h"
+#include "BPG/Hole.h"
 #include "Skill_HoleMan.generated.h"
 
 /**

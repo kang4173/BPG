@@ -37,19 +37,21 @@ void USkill_HoleMan::ActiveSkill()
 {
 
 
-    TArray<AActor*> OverlappingActors;
-
-//    SnomManSphere->GetOverlappingActors(OverlappingActors , ABaseChar::StaticClass());
-    for (AActor* Actor : OverlappingActors)
-    {
-        if (Actor->ActorHasTag("Sector1"))
-        {
-            float DamageAmount = 100.f;
-            FDamageEvent DamageEvent;
-            DamageEvent.DamageTypeClass = UDamageType::StaticClass();
-            UGameplayStatics::ApplyDamage(Actor , DamageAmount , nullptr , nullptr , UDamageType::StaticClass());
-        }
-    }
+    //TArray<AActor*> OverlappingActors;
+    //
+    ////SnomManSphere->GetOverlappingActors(OverlappingActors , ABaseChar::StaticClass());
+    //for (AActor* Actor : OverlappingActors)
+    //{
+    //    if (Actor->ActorHasTag("Sector1"))
+    //    {
+    //        float DamageAmount = 100.f;
+    //        FDamageEvent DamageEvent;
+    //        DamageEvent.DamageTypeClass = UDamageType::StaticClass();
+    //        UGameplayStatics::ApplyDamage(Actor , DamageAmount , nullptr , nullptr , UDamageType::StaticClass());
+    //    }
+    //}
+    AHole* tower = GetWorld()->SpawnActor<AHole>(AHole::StaticClass() , FVector((Char->GetActorLocation())-(Char->GetActorForwardVector()*100)) , Char->GetActorRotation());
+    
 }
 
 void USkill_HoleMan::CharacterCall(ACharacter* OwnChar)
