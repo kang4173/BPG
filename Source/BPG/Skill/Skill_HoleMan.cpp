@@ -39,7 +39,7 @@ void USkill_HoleMan::ActiveSkill()
 
     TArray<AActor*> OverlappingActors;
 
-    SnomManSphere->GetOverlappingActors(OverlappingActors , ABaseChar::StaticClass());
+//    SnomManSphere->GetOverlappingActors(OverlappingActors , ABaseChar::StaticClass());
     for (AActor* Actor : OverlappingActors)
     {
         if (Actor->ActorHasTag("Sector1"))

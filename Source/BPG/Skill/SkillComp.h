@@ -34,6 +34,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	virtual void ActiveSkill() {};
+	UFUNCTION(BlueprintCallable)
+	virtual void Released_ActiveSkill() {};
 
 	UFUNCTION(BlueprintCallable)
 	virtual void CharacterCall(ACharacter* OwnChar) {};
