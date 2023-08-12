@@ -130,9 +130,9 @@ void ABaseChar::MoveRight(float Value)
 
 void ABaseChar::ChangeChar()
 {
-	ResetCharSpeed();
-
-	GetWorld()->GetTimerManager().ClearTimer(BaseSkill->Timer);
+	 
+//	ResetCharSpeed();
+//	GetWorld()->GetTimerManager().ClearTimer(BaseSkill->Timer);
 
 	//CharReset();
 
@@ -151,6 +151,7 @@ void ABaseChar::ChangeChar()
 	if (&MainST)
 	{
 		BaseSkill = Cast<USkillComp>(AddComponentByClass(MainST.BaseSkillComp, true, GetTransform(), false));
+
 		
 	}
 	else { GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("MainST Null")); }
@@ -159,6 +160,7 @@ void ABaseChar::ChangeChar()
 	{
 		BaseSkill->SKillST = *(kkk->FindRow<FSkillStruct>(RandomNum, FString("")));
 		BaseSkill->CharacterCall(this); 
+
 	}
 	else { GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("BaseSkill Null")); }
 

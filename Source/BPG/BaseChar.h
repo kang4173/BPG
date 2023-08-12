@@ -13,8 +13,8 @@
 
 #include "BaseChar.generated.h"
 
-#define MINCOUNT 0
-#define MAXCOUNT 2
+#define MINCOUNT 3
+#define MAXCOUNT 3
 
 
 UCLASS()
