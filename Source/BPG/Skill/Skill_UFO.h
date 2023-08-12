@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "SkillComp.h"
 
+#include "BPG/UFOCylinder.h"
 #include "BPG/BaseChar.h"
 
 #include "Skill_UFO.generated.h"
@@ -37,6 +38,7 @@ public:
 		ABaseChar* Char;
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 		void ComSetting();
-
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<AUFOCylinder> CylinderClass;
 	
 };

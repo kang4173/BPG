@@ -13,9 +13,7 @@ USkill_UFO::USkill_UFO()
 void USkill_UFO::BeginPlay()
 {
     Super::BeginPlay();
-
     GEngine->AddOnScreenDebugMessage(-1, 30, FColor::Green, TEXT("UFO Beginplay"));
-
 }
     
 
@@ -31,13 +29,12 @@ void USkill_UFO::Tbagging()
 
 void USkill_UFO::ActiveSkill()
 {
-    GEngine->AddOnScreenDebugMessage(-1, 30, FColor::Green, TEXT("ActiveSkill"));
+    GetWorld()->SpawnActor<AUFOCylinder*>(CylinderClass, Char->GetActorLocation(), Char->GetActorRotation());
 }
-
 
 void USkill_UFO::Released_ActiveSkill()
 {
-    GEngine->AddOnScreenDebugMessage(-1, 30, FColor::Green, TEXT("Released_ActiveSkill"));
+   
 }
 
 void USkill_UFO::CharacterCall(ACharacter* OwnChar)
