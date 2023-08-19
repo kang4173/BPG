@@ -41,6 +41,12 @@ public:
 
 	TArray<ABaseChar*> ABaseCharArray;
 
+	bool IsOn=true;
+
+	bool IsActive=false;
+
+	
+
 
 
 	UFUNCTION(BlueprintCallable)
@@ -54,5 +60,11 @@ public:
 	void Active();
 
 	FTimeline MyTimeline;
+
+	UFUNCTION(BlueprintCallable)
+	void AddOverlappingActors();
+
+
+
 
 };

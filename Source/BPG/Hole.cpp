@@ -3,6 +3,7 @@
 
 #include "Hole.h"
 #include "Kismet/GameplayStatics.h"
+#include "Math/UnrealMathUtility.h"
 
 // Sets default values
 AHole::AHole()
@@ -11,12 +12,18 @@ AHole::AHole()
 	PrimaryActorTick.bCanEverTick = true;
 	Mesh=CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
 	Sphere = CreateDefaultSubobject< USphereComponent>(TEXT("Sphere"));
+	//Mesh->SetupAttachment(RootComponent);
+	RootComponent= Mesh;
+	Sphere->SetupAttachment(Mesh);
 	static ConstructorHelpers::FObjectFinder<UStaticMesh>SM_StaticMeshComponent(TEXT("StaticMesh'/Engine/VREditor/TransformGizmo/RotationHandleFull.RotationHandleFull'"));
 	if (SM_StaticMeshComponent.Succeeded())
 	{
 		Mesh->SetStaticMesh(SM_StaticMeshComponent.Object);
-		Mesh->SetRelativeRotation(FRotator(0,90,0));
+		//Mesh->SetRelativeLocationAndRotation(FVector(0,0,0),FRotator(90,0,0));
+		Mesh->SetWorldRotation(FRotator(90 , 0 , 0));
+		Sphere->SetRelativeLocationAndRotation(FVector::ZeroVector,FRotator(0 , 0 , 0) );
 		Sphere->SetWorldScale3D(FVector(10,10,10));
+		Sphere->SetHiddenInGame(false);
 
 		Sphere->OnComponentBeginOverlap.AddDynamic(this , &AHole::OnOverlapBegin);
 		Sphere->OnComponentEndOverlap.AddDynamic(this , &AHole::OnOverlapEnd);
@@ -32,11 +39,7 @@ void AHole::BeginPlay()
 {
 	Super::BeginPlay();
 
-	Owner->sphere->GetOverlappingActors(OverlappingActors , ABaseChar::StaticClass());
-	for (AActor* OverlappingActor : OverlappingActors)
-	{
-		ABaseCharArray.AddUnique(Cast<ABaseChar>(OverlappingActor));
-	}
+	//ABaseCharArray[10];
 	
 }
 
@@ -44,7 +47,17 @@ void AHole::BeginPlay()
 void AHole::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	if (IsOn)
+	{
+		GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Red , FString::Printf(TEXT("IsOn")));
+		AddOverlappingActors();
+		IsOn=false;
+		
+	}
+	if (IsActive)
+	{
+		//Active();
+	}
 }
 
 void AHole::OnOverlapBegin(UPrimitiveComponent* OverlappedComp , AActor* OtherActor , UPrimitiveComponent* OtherComp , int32 OtherBodyIndex , bool bFromSweep , const FHitResult& SweepResult)
@@ -59,12 +72,50 @@ void AHole::OnOverlapEnd(UPrimitiveComponent* OverlappedComp , AActor* OtherActo
 
 void AHole::Active()
 {
+	GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Magenta , FString::Printf(TEXT("HoleManActive")));
+
+	
 	for (ABaseChar* BaseChar : ABaseCharArray)
 	{
-
-		MyTimeline.SetPlayRate(0.1f);
-		MyTimeline.SetLooping(false);
+		//FVector NewLocation = Sphere->GetComponentLocation();
+		FVector TargetLocation= Sphere->GetComponentLocation();
+		FVector BaseCharLocation = BaseChar->GetActorLocation();
+		float InterpolationSpeed = 0.5f;
+		FVector NewLocation = FMath::Lerp(BaseCharLocation , TargetLocation , InterpolationSpeed);
+		BaseChar->SetActorLocation(NewLocation);
+	
+		//FVector Offset = BaseChar->GetActorLocation() - NewLocation;
+		//NewLocation += Offset;
+		//BaseChar->SetActorLocation(NewLocation,true);
+		//MyTimeline.SetPlayRate(0.1f);
+		//MyTimeline.SetLooping(false);
 		//MyTimeline.SetTimelineFinishedFunc(FOnTimelineEvent::(this , &AMyActor::OnTimelineFinished));
 	}
 }
+
+void AHole::AddOverlappingActors()
+{
+	GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Orange , FString::Printf(TEXT("OverlappingActor")));
+	Sphere->GetOverlappingActors(OverlappingActors , ABaseChar::StaticClass());
+	for (AActor* OverlappingActor : OverlappingActors)
+	{
+		ABaseCharArray.Add(Cast<ABaseChar>(OverlappingActor));
+		GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Silver , FString::Printf(TEXT("OverlappingActor: %s") , *(OverlappingActor->GetName())));
+
+		
+		
+	}
+	//Active();
+	IsActive = true;
+	//for (AActor* EsxActor: ABaseCharArray)
+	//{
+	//
+	//	GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Silver , FString::Printf(TEXT("EsxActor: %s") , *(EsxActor->GetName())));
+	//}
+
+}
+
+
+
+
 
