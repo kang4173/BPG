@@ -46,7 +46,13 @@ void AHole::BeginPlay()
 // Called every frame
 void AHole::Tick(float DeltaTime)
 {
+
 	Super::Tick(DeltaTime);
+	Five+=DeltaTime;
+	if (Five >= 5)
+	{
+		Destroy(true);
+	}
 	if (IsOn)
 	{
 		GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Red , FString::Printf(TEXT("IsOn")));
@@ -56,7 +62,7 @@ void AHole::Tick(float DeltaTime)
 	}
 	if (IsActive)
 	{
-		//Active();
+		Active();
 	}
 }
 
@@ -75,14 +81,16 @@ void AHole::Active()
 	GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Magenta , FString::Printf(TEXT("HoleManActive")));
 
 	
-	for (ABaseChar* BaseChar : ABaseCharArray)
+	
+	
+	for (int i = 0; i < ABaseCharArray.Num() - 1; i++)
 	{
 		//FVector NewLocation = Sphere->GetComponentLocation();
 		FVector TargetLocation= Sphere->GetComponentLocation();
-		FVector BaseCharLocation = BaseChar->GetActorLocation();
-		float InterpolationSpeed = 0.5f;
+		FVector BaseCharLocation = ABaseCharArray[i]->GetActorLocation();
+		float InterpolationSpeed = 0.1f;
 		FVector NewLocation = FMath::Lerp(BaseCharLocation , TargetLocation , InterpolationSpeed);
-		BaseChar->SetActorLocation(NewLocation);
+		ABaseCharArray[i]->SetActorLocation(NewLocation);
 	
 		//FVector Offset = BaseChar->GetActorLocation() - NewLocation;
 		//NewLocation += Offset;
@@ -95,24 +103,50 @@ void AHole::Active()
 
 void AHole::AddOverlappingActors()
 {
+
+	TArray<AActor*> OverlappingActors;
 	GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Orange , FString::Printf(TEXT("OverlappingActor")));
-	Sphere->GetOverlappingActors(OverlappingActors , ABaseChar::StaticClass());
+	Sphere->GetOverlappingActors(OverlappingActors , AActor::StaticClass());
+	GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Red, FString::Printf(TEXT("ABaseCharArray: %d") , (ABaseCharArray.Num())));
 	for (AActor* OverlappingActor : OverlappingActors)
 	{
-		ABaseCharArray.Add(Cast<ABaseChar>(OverlappingActor));
-		GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Silver , FString::Printf(TEXT("OverlappingActor: %s") , *(OverlappingActor->GetName())));
-
+		GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Green , FString::Printf(TEXT("OverlappingActor: %s") , *(OverlappingActor->GetName())));
 		
+		if (ABaseChar* ExBaseChar = Cast<ABaseChar>(OverlappingActor))
+		{ 
+			GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Silver , FString::Printf(TEXT("OverlappingActor: %s") , *(ExBaseChar->GetName())));
+			ABaseCharArray.AddUnique(ExBaseChar);
+			
+			//GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Orange , FString::Printf(TEXT("ABaseCharArray: %f") , (ABaseCharArray.Num())));
+			
+		}
+
 		
 	}
+	GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Magenta, FString::Printf(TEXT("ABaseCharArray: %d") , (ABaseCharArray.Num())));
 	//Active();
 	IsActive = true;
-	//for (AActor* EsxActor: ABaseCharArray)
+	
+	//for (ABaseChar* ExActor : ABaseCharArray)
 	//{
 	//
-	//	GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Silver , FString::Printf(TEXT("EsxActor: %s") , *(EsxActor->GetName())));
+	//	GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Silver , FString::Printf(TEXT("EsxActor: %s") , *(ExActor->GetName())));
 	//}
+}
 
+void AHole::CheckArray()
+{
+
+	for (int i = 0; i < ABaseCharArray.Num() - 1; i++)
+	{
+
+		GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Red , FString::Printf(TEXT("ExBaseChar: %s") , *(ABaseCharArray[i]->GetName())));
+	}
+	//for (ABaseChar* ExBaseChar : ABaseCharArray)
+	//{
+	//	//GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Magenta , FString::Printf(TEXT("ABaseCharArray: %d") , (ABaseCharArray.Num())));
+	//
+	//}
 }
 
 

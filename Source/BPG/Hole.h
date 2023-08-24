@@ -35,7 +35,7 @@ public:
 	USphereComponent* Sphere;
 
 
-	TArray<AActor*> OverlappingActors;
+	
 
 	ABaseChar* Owner;
 
@@ -45,7 +45,7 @@ public:
 
 	bool IsActive=false;
 
-	
+	float Five=0;
 
 
 
@@ -63,6 +63,10 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void AddOverlappingActors();
+
+
+	UFUNCTION(BlueprintCallable)
+	void CheckArray();
 
 
 
