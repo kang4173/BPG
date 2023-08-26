@@ -30,18 +30,20 @@ public:
 
 public:
 	UFUNCTION(BlueprintCallable)
-	virtual void Tbagging() {};
+		virtual void Tbagging() {};
 
 	UFUNCTION(BlueprintCallable)
-	virtual void ActiveSkill() {};
+		virtual void ActiveSkill() {};
 	UFUNCTION(BlueprintCallable)
-	virtual void Released_ActiveSkill() {};
+		virtual void PassiveSkill() {};
+	UFUNCTION(BlueprintCallable)
+		virtual void Released_ActiveSkill() {};
 
 	UFUNCTION(BlueprintCallable)
-	virtual void CharacterCall(ACharacter* OwnChar) {};
+		virtual void CharacterCall(ACharacter* OwnChar) {};
 
 	UFUNCTION(BlueprintCallable)
-	virtual void FindPoint(FVector Loc) {};
+		virtual void FindPoint(FVector Loc) {};
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FSkillStruct SKillST;
@@ -51,7 +53,7 @@ public:
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UStaticMesh* Mesh;
+		UStaticMesh* Mesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		ABaseChar* BaseChar;
