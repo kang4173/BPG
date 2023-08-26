@@ -50,8 +50,12 @@ void USkill_HoleMan::ActiveSkill()
     //        UGameplayStatics::ApplyDamage(Actor , DamageAmount , nullptr , nullptr , UDamageType::StaticClass());
     //    }
     //}
-    AHole* tower = GetWorld()->SpawnActor<AHole>(AHole::StaticClass() , FVector((Char->GetActorLocation())-(Char->GetActorForwardVector()*100)) , Char->GetActorRotation());
-    
+    FTransform SpawnTransform=FTransform(FRotator(),FVector(),FVector());
+    FVector SettingLocation= FVector((Char->GetActorLocation()) + (Char->GetActorForwardVector() * 1000));
+    //AHole* tower = GetWorld()->SpawnActor<AHole>(AHole::StaticClass() , FVector(SettingLocation.X, SettingLocation.Y, SettingLocation.Z-90) , Char->GetActorRotation());
+    AHole* tower = GetWorld()->SpawnActor<AHole>(AHole::StaticClass() , FTransform(FRotator(0,0,0),FVector(SettingLocation.X , SettingLocation.Y , SettingLocation.Z - 90), FVector(1,1,1)));
+    //GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Magenta, FString::Printf(TEXT("HoleManActive") ));
+
 }
 
 void USkill_HoleMan::CharacterCall(ACharacter* OwnChar)

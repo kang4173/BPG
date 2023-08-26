@@ -35,11 +35,17 @@ public:
 	USphereComponent* Sphere;
 
 
-	TArray<AActor*> OverlappingActors;
+	
 
 	ABaseChar* Owner;
 
 	TArray<ABaseChar*> ABaseCharArray;
+
+	bool IsOn=true;
+
+	bool IsActive=false;
+
+	float Five=0;
 
 
 
@@ -54,5 +60,15 @@ public:
 	void Active();
 
 	FTimeline MyTimeline;
+
+	UFUNCTION(BlueprintCallable)
+	void AddOverlappingActors();
+
+
+	UFUNCTION(BlueprintCallable)
+	void CheckArray();
+
+
+
 
 };
