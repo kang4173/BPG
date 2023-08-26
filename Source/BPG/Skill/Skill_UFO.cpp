@@ -29,7 +29,7 @@ void USkill_UFO::Tbagging()
 
 void USkill_UFO::ActiveSkill()
 {
-    GetWorld()->SpawnActor<AUFOCylinder*>(CylinderClass, Char->GetActorLocation(), Char->GetActorRotation());
+    GetWorld()->SpawnActor<AUFOCylinder>(AUFOCylinder::StaticClass(), Char->GetActorLocation(), Char->GetActorRotation());
 }
 
 void USkill_UFO::Released_ActiveSkill()

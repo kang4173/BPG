@@ -5,11 +5,12 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 
-#include "BPG/BaseChar.h"
+//#include "BPG/BaseChar.h"
 #include "BPG/SkillStruct.h"
 
 #include "SkillComp.generated.h"
 
+class ABaseChar;
 
 UCLASS(Blueprintable, BlueprintType)
 class BPG_API USkillComp : public UActorComponent
@@ -58,6 +59,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		ABaseChar* BaseChar;
 
-	UFUNCTION(BlueprintCallable)
-		virtual void SetBaseChar(ABaseChar* _basechar);
+	//UFUNCTION(BlueprintCallable)
+	//	virtual void SetBaseChar(ABaseChar* _basechar);
 };
