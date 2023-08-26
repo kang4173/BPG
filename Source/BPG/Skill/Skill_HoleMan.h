@@ -30,6 +30,8 @@ public:
 
 	virtual void CharacterCall(ACharacter* OwnChar) override;
 
+	void SetOwner(AHole* Hole);
+
 public:
 
 

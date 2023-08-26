@@ -53,7 +53,10 @@ void USkill_HoleMan::ActiveSkill()
     FTransform SpawnTransform=FTransform(FRotator(),FVector(),FVector());
     FVector SettingLocation= FVector((Char->GetActorLocation()) + (Char->GetActorForwardVector() * 1000));
     //AHole* tower = GetWorld()->SpawnActor<AHole>(AHole::StaticClass() , FVector(SettingLocation.X, SettingLocation.Y, SettingLocation.Z-90) , Char->GetActorRotation());
-    AHole* tower = GetWorld()->SpawnActor<AHole>(AHole::StaticClass() , FTransform(FRotator(0,0,0),FVector(SettingLocation.X , SettingLocation.Y , SettingLocation.Z - 90), FVector(1,1,1)));
+    //AHole* Hole = GetWorld()->SpawnActor<AHole>(AHole::StaticClass() , FTransform(FRotator(0,0,0),FVector(SettingLocation.X , SettingLocation.Y , SettingLocation.Z - 90), FVector(1,1,1)));
+    AHole* Hole = GetWorld()->SpawnActor<AHole>(AHole::StaticClass() , FTransform(FRotator(0 , 0 , 0),FVector(Char->GetActorLocation().X, Char->GetActorLocation().Y, Char->GetActorLocation().Z+80), FVector(1 , 1 , 1)));
+    FVector Force = FVector((Hole->GetActorLocation()) + (Char->GetActorForwardVector() * 1000000) + (Char->GetActorUpVector() * 1000000));
+    Hole->Mesh->AddForce(Force);
     //GEngine->AddOnScreenDebugMessage(-1 , 15 , FColor::Magenta, FString::Printf(TEXT("HoleManActive") ));
 
 }
@@ -62,4 +65,9 @@ void USkill_HoleMan::CharacterCall(ACharacter* OwnChar)
 {
     Char = Cast<ABaseChar>(OwnChar);
     
+}
+
+void USkill_HoleMan::SetOwner(AHole* Hole)
+{
+    Hole->Owner = Char;
 }
