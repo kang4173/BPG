@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 
-
+#include "BPG/BaseChar.h"
 #include "BPG/SkillStruct.h"
 
 #include "SkillComp.generated.h"
@@ -53,5 +53,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UStaticMesh* Mesh;
 
-		
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		ABaseChar* BaseChar;
+
+	UFUNCTION(BlueprintCallable)
+		virtual void SetBaseChar(ABaseChar* _basechar);
 };

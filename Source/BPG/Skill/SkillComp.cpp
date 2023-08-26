@@ -30,4 +30,9 @@ void USkillComp::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 	// ...
 }
 
+void USkillComp::SetBaseChar(ABaseChar* _basechar)
+{
+	BaseChar = _basechar;
+}
+
 

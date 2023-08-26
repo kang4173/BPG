@@ -160,7 +160,7 @@ void ABaseChar::ChangeChar()
 	{
 		BaseSkill->SKillST = *(kkk->FindRow<FSkillStruct>(RandomNum, FString("")));
 		BaseSkill->CharacterCall(this); 
-
+		BaseSkill->SetBaseChar(this);
 	}
 	else { GEngine->AddOnScreenDebugMessage(-1, 15, FColor::Red, TEXT("BaseSkill Null")); }
 
